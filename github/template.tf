@@ -19,5 +19,6 @@ resource "github_repository_file" "repo_template_pr" {
   branch = "master"
   commit_message = "Managed by Terraform"
   commit_author = "Terraform"
+  commit_email = "absinthe4902@naver.com"
   overwrite_on_create = true
 }

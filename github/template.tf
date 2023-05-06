@@ -17,5 +17,7 @@ resource "github_repository_file" "repo_template_pr" {
   file       = ".github/pull_request_template.md"
   repository = github_repository.repo_template.name
   branch = "master"
-  commit_message = ""
+  commit_message = "Managed by Terraform"
+  commit_author = "Terraform"
+  overwrite_on_create = true
 }

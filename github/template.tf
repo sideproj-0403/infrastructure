@@ -1,6 +1,6 @@
 resource "github_repository" "repo_template" {
   name        = "repo-template"
-  description = "This is a repo template for new repositories"
+  description = "This is a repo template for new repositoriess"
 
   visibility  = "private"
   is_template = true

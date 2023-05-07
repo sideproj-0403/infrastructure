@@ -4,7 +4,7 @@ description = "GitHub Personal Access Token that is configured on the Terraform 
 
 variable "github_org" {
     type = string
-    default ="sideproject-0403"
+    default =""
     description = "GitHub Organisation Name"
 }
 

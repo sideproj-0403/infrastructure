@@ -30,14 +30,6 @@ resource "github_repository" "respositories" {
   auto_init          = true
 }
 
-resource "github_repository_autolink_reference" "autolink" {
-  count               = length(github_repository.respositories)
-
-  repository          = github_repository.respositories[count.index].name
-  key_prefix          = "TN-"
-  target_url_template = "https://sideproject-0403.atlassian.net/browse/TN-<num>"
-}
-
 # Branch Protection Rules
 resource "github_branch_protection" "branch_protection" {
   count               = length(github_repository.respositories)
@@ -50,6 +42,13 @@ resource "github_branch_protection" "branch_protection" {
     required_approving_review_count = 1
     dismiss_stale_reviews           = true
   }
+
+  push_restrictions = [
+    concat(
+      local.admins,
+      local.members
+    )
+  ]
 }
 
 resource "github_branch" "prod_backend_repo" {

@@ -22,6 +22,7 @@ resource "github_repository" "respositories" {
   template {
     owner      = "sideproject-0403"
     repository = "repo-template"
+    branch = "master"
   }
 }
 

@@ -9,7 +9,7 @@ resource "github_repository" "repo_template" {
 
 resource "github_branch" "repo_template" {
   repository = github_repository.repo_template.name
-  branch     = "master"
+  branch     = "main"
 }
 
 resource "github_branch_default" "repo_template" {
@@ -19,7 +19,7 @@ resource "github_branch_default" "repo_template" {
 
 resource "github_repository_file" "repo_template_pr" {
   repository          = github_repository.repo_template.name
-  branch              = "master"
+  branch              = "main"
   file                = ".github/pull_request_template.md"
   content             = file("template/.github/pull_request_template.md")
   commit_message      = "Managed by Terraform"
@@ -30,7 +30,7 @@ resource "github_repository_file" "repo_template_pr" {
 
 resource "github_repository_file" "repo_template_codeowners" {
   repository          = github_repository.repo_template.name
-  branch              = "master"
+  branch              = "main"
   file                = ".github/CODEOWNERS"
   content             = file("template/.github/CODEOWNERS")
   commit_message      = "Managed by Terraform"

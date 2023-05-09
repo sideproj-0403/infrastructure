@@ -30,13 +30,6 @@ resource "github_repository" "respositories" {
   auto_init          = true
 }
 
-resource "github_branch_default" "default" {
-  count              = length(github_repository.respositories)
-
-  repository         = github_repository.respositories[count.index].name
-  branch             = "master"
-}
-
 resource "github_repository_autolink_reference" "autolink" {
   count               = length(github_repository.respositories)
 
@@ -59,14 +52,14 @@ resource "github_branch_protection" "branch_protection" {
   }
 }
 
-resource "github_branch" "branch_production" {
-  repository      = local.backend_repo[0]
+resource "github_branch" "prod_backend_repo" {
+  repository      = local.backend_repo[0] # sideproject-0403-api
   branch          = "prod"
   source_branch   = "master"
 }
 
-resource "github_branch" "branch_production" {
-  repository      = local.frontend_repo[0]
+resource "github_branch" "prod_frontend_repo" {
+  repository      = local.frontend_repo[0] # sideproject-0403-android-app
   branch          = "prod"
   source_branch   = "master"
 }

@@ -11,7 +11,7 @@ data "github_repository" "manage_github" {
 }
 
 # Set permissions to manage-github for devops github team
-resource "github_team_repository" "manage_github_contributors" {
+resource "github_team_repository" "manage_github_devops" {
   team_id    = github_team.devops.id
   repository = data.github_repository.manage_github.name
   permission = "admin"

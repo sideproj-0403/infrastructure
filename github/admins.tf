@@ -1,13 +1,3 @@
-# Someone Elses Organisation Admins
-locals {
-
-  admins = [
-    "leeleelee3264",
-    "leelee-technical"
-  ]
-
-}
-
 # Add codeowners team as orgnisation member
 resource "github_membership" "admins" {
   for_each = toset(local.admins)
@@ -17,7 +7,7 @@ resource "github_membership" "admins" {
 }
 
 data "github_repository" "manage_github" {
-  full_name = "sideproject-0403/infrastructure"
+  full_name = var.manage_github
 }
 
 # Set permissions to manage-github for contributors github team

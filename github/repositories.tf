@@ -1,5 +1,13 @@
 locals {
 
+  devops_repo = [
+    "sideproject-0403-"
+  ]
+
+
+  backend_repo = []
+  frontend_repo = []
+
   respositories = [
     "EXAMPLE-REPO-1",
     "EXAMPLE-REPO-2",
@@ -7,6 +15,41 @@ locals {
   ]
 
 }
+
+resource "github_repository" "sideproject-0403-api" {
+  name                = "sideproject-0403-api"
+  description         = "api repo for sideproject-0403"
+  visibility          = "private"
+  auto_init           = true
+
+}
+
+resource "github_repository" "sideproject-0403-api-docs" {
+  name                = "sideproject-0403-api-docs"
+  description         = "api docs repo for sideproject-0403"
+  visibility          = "private"
+  auto_init           = true
+
+
+}
+
+resource "github_repository" "sideproject-0403-android-app" {
+  name                = "sideproject-0403-andorid-app"
+  description         = "android aoo repo for sideproject-0403"
+  visibility          = "private"
+  auto_init           = true
+
+}
+
+
+resource "github_repository" "sideproject-0403-k8s-manifest" {
+  name                = "sideproject-0403-k8s-manifest"
+  description         = "k8s manifest repo for sideproject-0403"
+  visibility          = "private"
+  auto_init           = true
+
+}
+
 
 
 # Create new repository from template
@@ -18,11 +61,6 @@ resource "github_repository" "respositories" {
   gitignore_template = "Terraform"
   visibility         = "public"
   auto_init          = true
-
-  template {
-    owner      = "sideproject-0403"
-    repository = "repo-template"
-  }
 }
 
 # Branch Protection Rules

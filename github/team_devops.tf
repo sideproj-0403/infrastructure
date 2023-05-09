@@ -16,3 +16,9 @@ resource "github_team_repository" "devops" {
     github_repository.respositories
   ]
 }
+
+#TODO
+#devops 팀 다시 만들기 (내가 맴버로 안 들어감)
+#push restriction -> 아마 locals로 쓴 유저를 data로 바꿔야할듯...
+##PR Template 적용
+#팀원 초대

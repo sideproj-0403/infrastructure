@@ -64,11 +64,12 @@ resource "github_branch_protection" "branch_protection" {
   ]
 }
 
-resource "github_branch" "master" {
+resource "github_branch_default" "default"{
   count               = length(github_repository.respositories)
 
   repository          = github_repository.respositories[count.index].name
   branch              = "master"
+  rename              = true
 }
 
 resource "github_branch" "prod_backend_repo" {

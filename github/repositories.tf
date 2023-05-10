@@ -1,16 +1,23 @@
 locals {
 
+  k8s-manifest = format("%s-%s", var.github_org, "k8s-manifest")
+
+  api          = format("%s-%s", var.github_org, "api")
+  api-docs     = format("%s-%s", var.github_org, "api-docs")
+
+  android-app  = format("%s-%s", var.github_org, "android-app")
+
   devops_repo = [
-    "sideproject-0403-k8s-manifest",
+    local.k8s-manifest
   ]
 
   backend_repo = [
-    "sideproject-0403-api",
-    "sideproject-0403-api-docs"
+    local.api,
+    local.api-docs
   ]
 
   frontend_repo = [
-    "sideproject-0403-android-app"
+    local.android-app
   ]
 
   all_repositories = concat(
@@ -19,6 +26,10 @@ locals {
     local.frontend_repo
   )
 
+  prod_repositories = [
+    local.api,
+    local.android-app
+  ]
 
 }
 
@@ -54,13 +65,9 @@ resource "github_branch_protection" "branch_protection" {
 }
 
 resource "github_branch" "prod_backend_repo" {
-  repository      = local.backend_repo[0] # sideproject-0403-api
-  branch          = "prod"
-  source_branch   = "master"
-}
+  count           = length(local.prod_repositories)
 
-resource "github_branch" "prod_frontend_repo" {
-  repository      = local.frontend_repo[0] # sideproject-0403-android-app
+  repository      = local.prod_repositories[count.index]
   branch          = "prod"
   source_branch   = "master"
 }

@@ -1,7 +1,7 @@
 # Create a backend team
 resource "github_team" "admin" {
-  name        = "frontend"
-  description = "frontend GitHub Team"
+  name        = "admin"
+  description = "GitHub Team"
   privacy     = "closed"
 }
 
@@ -11,10 +11,6 @@ resource "github_membership" "admin" {
 
   username = each.key
   role     = "admin"
-}
-
-data "github_repository" "manage_github" {
-  full_name = var.manage_github
 }
 
 # Add frontend to github team
@@ -28,6 +24,10 @@ resource "github_team_members" "admin" {
     role     = "maintainer"
   }
 
+}
+
+data "github_repository" "manage_github" {
+  full_name = var.manage_github
 }
 
 resource "github_team_repository" "admin" {

@@ -10,5 +10,5 @@ terraform {
 # Configure the GitHub Provider
 provider "github" {
   token = var.github_token
-  owner = "sideproject-0403"
+  owner = var.github_org
 }

@@ -69,7 +69,6 @@ resource "github_branch_default" "default"{
 
   repository          = github_repository.respositories[count.index].name
   branch              = "master"
-  rename              = true
 }
 
 resource "github_branch" "prod_backend_repo" {

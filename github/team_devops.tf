@@ -10,18 +10,18 @@ resource "github_membership" "devops" {
   for_each = toset(local.devops_users)
 
   username = each.value
-  role     = "member"
+  role     = "admin"
 }
 
 # Add frontend to github team
 resource "github_team_members" "devops" {
-  for_each = toset(local.frontend_users)
+  for_each = toset(local.devops_users)
 
   team_id = github_team.devops.id
 
   members {
     username = each.value
-    role     = "member"
+    role     = "maintainer"
   }
 }
 
@@ -30,7 +30,21 @@ resource "github_team_repository" "devops" {
 
   team_id    = github_team.devops.id
   repository = each.value
-  permission = "push"
+  permission = "admin"
+
+  depends_on = [
+    github_repository.respositories
+  ]
+}
+
+data "github_repository" "manage_github" {
+  full_name = var.manage_github
+}
+
+resource "github_team_repository" "manage_github_devops" {
+  team_id    = github_team.devops.id
+  repository = data.github_repository.manage_github.name
+  permission = "admin"
 
   depends_on = [
     github_repository.respositories

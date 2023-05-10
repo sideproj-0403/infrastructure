@@ -57,7 +57,6 @@ resource "github_branch_protection" "branch_protection" {
   }
 
   push_restrictions = [
-    github_team.admin.node_id,
     github_team.devops.node_id,
     github_team.backend.node_id,
     github_team.frontend.node_id
@@ -65,9 +64,13 @@ resource "github_branch_protection" "branch_protection" {
 }
 
 resource "github_branch" "prod_backend_repo" {
-  count           = length(local.prod_repositories)
+  repository      = local.api
+  branch          = "prod"
+  source_branch   = "master"
+}
 
-  repository      = local.prod_repositories[count.index]
+resource "github_branch" "prod_frontend_repo" {
+  repository      = local.android-app
   branch          = "prod"
   source_branch   = "master"
 }

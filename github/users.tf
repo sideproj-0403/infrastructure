@@ -1,10 +1,7 @@
 locals {
 
-  admin_machine_users = [
-    "leelee-technical"
-  ]
-
   devops_users = [
+    "leelee-technical", # machine user account
     "leeleelee3264"
   ]
 
@@ -14,15 +11,5 @@ locals {
 
   frontend_users = [
   ]
-
-  admins = concat(
-    local.admin_machine_users,
-    local.devops_users
-  )
-
-  members = concat(
-    local.backend_users,
-    local.frontend_users
-  )
 
 }

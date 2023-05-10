@@ -26,14 +26,14 @@ resource "github_team_members" "frontend" {
 
 }
 
-#resource "github_team_repository" "frontend" {
-#  for_each = toset(local.frontend_repo)
-#
-#  team_id    = github_team.frontend.id
-#  repository = each.value
-#  permission = "push"
-#
-#  depends_on = [
-#    github_repository.respositories
-#  ]
-#}
+resource "github_team_repository" "frontend" {
+  for_each = toset(local.frontend_repo)
+
+  team_id    = github_team.frontend.id
+  repository = each.value
+  permission = "push"
+
+  depends_on = [
+    github_repository.respositories
+  ]
+}

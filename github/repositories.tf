@@ -78,6 +78,10 @@ resource "github_branch_default" "default"{
 
   repository          = github_repository.respositories[count.index].name
   branch              = "master"
+
+  depends_on = [
+    github_repository.respositories
+  ]
 }
 
 resource "github_branch" "prod_backend_repo" {

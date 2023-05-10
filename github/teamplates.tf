@@ -26,4 +26,8 @@ resource "github_repository_file" "repo_template_pr" {
   commit_author       = "Terraform"
   commit_email        = "absinthe4902@naver.com"
   overwrite_on_create = true
+
+  depends_on = [
+    github_repository.repo_template
+  ]
 }

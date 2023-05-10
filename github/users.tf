@@ -6,10 +6,12 @@ locals {
   ]
 
   backend_users = [
-    "leeleelee3264"
+    "leeleelee3264",
+    "ujeongeom"
   ]
 
   frontend_users = [
+    "xxunghee"
   ]
 
 }

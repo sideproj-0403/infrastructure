@@ -27,15 +27,15 @@ resource "github_team_members" "backend" {
 }
 
 # Set permissions to respositories for contributors github team
-resource "github_team_repository" "backend" {
-  for_each = toset(local.backend_repo)
-
-  team_id    = github_team.backend.id
-  repository = each.value
-  permission = "push"
-
-  depends_on = [
-    github_repository.respositories
-  ]
-
-}
+#resource "github_team_repository" "backend" {
+#  for_each = toset(local.backend_repo)
+#
+#  team_id    = github_team.backend.id
+#  repository = each.value
+#  permission = "push"
+#
+#  depends_on = [
+#    github_repository.respositories
+#  ]
+#
+#}

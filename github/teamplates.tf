@@ -20,10 +20,10 @@ resource "github_branch_default" "repo_template" {
 resource "github_repository_file" "repo_template_pr" {
   repository          = github_repository.repo_template.name
   branch              = "master"
-  file                = ".github/pull_request_template.md"
+  file                = "pull_request_template.md"
   content             = file("template/pull_request_template.md")
   commit_message      = "Managed by Terraform"
   commit_author       = "Terraform"
-  commit_email        = "terraform@someoneelsesemail.com"
+  commit_email        = "absinthe4902@naver.com"
   overwrite_on_create = true
 }

@@ -78,7 +78,7 @@ resource "github_branch" "prod_backend_repo" {
   source_branch   = "master"
 
   depends_on = [
-    github_branch.master
+    github_branch_default.default
   ]
 }
 
@@ -88,6 +88,6 @@ resource "github_branch" "prod_frontend_repo" {
   source_branch   = "master"
 
   depends_on = [
-    github_branch.master
+    github_branch_default.default
   ]
 }

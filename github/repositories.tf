@@ -18,6 +18,8 @@ locals {
     local.backend_repo,
     local.frontend_repo
   )
+
+
 }
 
 # Create new repository from template
@@ -44,10 +46,10 @@ resource "github_branch_protection" "branch_protection" {
   }
 
   push_restrictions = [
-    concat(
-      local.admins,
-      local.members
-    )
+    github_team.admin.node_id,
+    github_team.devops.node_id,
+    github_team.backend.node_id,
+    github_team.frontend.node_id
   ]
 }
 

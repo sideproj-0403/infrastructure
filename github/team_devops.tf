@@ -5,20 +5,34 @@ resource "github_team" "devops" {
   privacy     = "closed"
 }
 
+# Add frontend team as organization member
+resource "github_membership" "devops" {
+  for_each = toset(local.devops_users)
+
+  username = each.value
+  role     = "member"
+}
+
+# Add frontend to github team
+resource "github_team_members" "devops" {
+  for_each = toset(local.frontend_users)
+
+  team_id = github_team.devops.id
+
+  members {
+    username = each.value
+    role     = "member"
+  }
+}
+
 resource "github_team_repository" "devops" {
   for_each = toset(local.devops_repo)
 
   team_id    = github_team.devops.id
   repository = each.value
-  permission = "admin"
+  permission = "push"
 
   depends_on = [
     github_repository.respositories
   ]
 }
-
-#TODO
-#devops 팀 다시 만들기 (내가 맴버로 안 들어감)
-#push restriction -> 아마 locals로 쓴 유저를 data로 바꿔야할듯...
-##PR Template 적용
-#팀원 초대

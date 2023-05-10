@@ -41,12 +41,12 @@ data "github_repository" "manage_github" {
   full_name = var.manage_github
 }
 
-resource "github_team_repository" "manage_github_devops" {
-  team_id    = github_team.devops.id
-  repository = data.github_repository.manage_github.name
-  permission = "admin"
-
-  depends_on = [
-    github_repository.respositories
-  ]
-}
+#resource "github_team_repository" "manage_github_devops" {
+#  team_id    = github_team.devops.id
+#  repository = data.github_repository.manage_github.name
+#  permission = "admin"
+#
+#  depends_on = [
+#    github_repository.respositories
+#  ]
+#}

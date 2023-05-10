@@ -42,6 +42,15 @@ resource "github_repository" "respositories" {
   auto_init               = true
   delete_branch_on_merge  = true
 
+  template {
+    owner      = var.github_org
+    repository = "repo-template"
+  }
+
+  depends_on = [
+    github_repository.repo_template
+  ]
+
 }
 
 # Branch Protection Rules
